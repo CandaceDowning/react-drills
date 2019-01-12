@@ -1,21 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import NewTask from './NewTask';
+import List from './List'
+
 
 class App extends Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      toDoArray:[]
+    }
+  }
+
+  handleAddTask=(chore)=>{
+    this.setState({toDoArray:[...this.state.toDoArray, chore]})
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1>My to-do list:</h1>
+        <NewTask output={this.handleAddTask}/>
+        <List chore={this.state.toDoArray}/>
       </div>
     );
   }
 }
 
 export default App;
+
+
+//calls components from newtask list
+//holds an array to send to list
